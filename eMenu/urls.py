@@ -18,12 +18,22 @@ from django.urls import path, include
 from rest_framework import routers
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
 from django.conf import settings
+from menu_app import views
 
 
 router = routers.DefaultRouter()
+router.register(r"dish", views.DishCreate, basename="dish")
+router.register(r"menu", views.MenuCreate, basename="menu")
 
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-] + staticfiles_urlpatterns() + \
-  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", include(router.urls)),
+        path("index/", views.MenuList.as_view(), name="menu-list"),
+        path("index/<int:id>", views.MenuDetail.as_view(), name="menu-detail"),
+        path("menu/<int:pk>", views.MenuManage.as_view(), name="menu-manage"),
+        path("dish/<int:pk>", views.DishManage.as_view(), name="dish-manage"),
+    ]
+    + staticfiles_urlpatterns()
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
