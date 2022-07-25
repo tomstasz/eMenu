@@ -1,5 +1,6 @@
-from .models import Dish, Menu
 from rest_framework import serializers
+
+from .models import Dish, Menu
 
 
 class DishSerializer(serializers.ModelSerializer):

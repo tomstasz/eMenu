@@ -1,22 +1,21 @@
-from .models import Dish, Menu
-from .serializers import (
-    DishSerializer,
-    MenuSerializer,
-    MenuDetailSerializer,
-    CreateMenuSerializer,
-    CreateDishSerializer,
-)
-from rest_framework.response import Response
-from rest_framework import generics, viewsets, permissions
-from django.db.models import Count
-from django_filters.rest_framework import DjangoFilterBackend
 import django_filters
+from django.core.mail import EmailMessage
 from django.db import models as django_models
-from rest_framework.views import APIView
+from django.db.models import Count
 from django.http import Http404
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, permissions, viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import Dish, Menu
+from .serializers import (CreateDishSerializer, CreateMenuSerializer,
+                          DishSerializer, MenuDetailSerializer, MenuSerializer)
 
 
 class MenuList(generics.ListAPIView):
+    """View of all menus with at least one dish."""
+
     serializer_class = MenuSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name", "creation_date", "last_modified_date"]
@@ -35,6 +34,8 @@ class MenuList(generics.ListAPIView):
 
 
 class MenuDetail(APIView):
+    """Detailed view of single menu"""
+
     def get_object(self, pk):
         try:
             return Menu.objects.get(pk=pk)
@@ -48,24 +49,32 @@ class MenuDetail(APIView):
 
 
 class DishCreate(viewsets.ModelViewSet):
+    """Endpoint to add new dish."""
+
     permission_classes = [permissions.IsAuthenticated]
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
 
 
 class MenuCreate(viewsets.ModelViewSet):
+    """Endpoint to add new menu."""
+
     permission_classes = [permissions.IsAuthenticated]
     queryset = Menu.objects.all()
     serializer_class = CreateMenuSerializer
 
 
 class MenuManage(generics.RetrieveUpdateDestroyAPIView):
+    """Endpoint to modify or delete menus."""
+
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = CreateMenuSerializer
     queryset = Menu.objects.all()
 
 
 class DishManage(generics.RetrieveUpdateDestroyAPIView):
+    """Endpoint to modify or delete dishes."""
+
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = CreateDishSerializer
     queryset = Dish.objects.all()
