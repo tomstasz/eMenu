@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  sqlite3:
+    container_name: sqlite3_container
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/root/db/
+    ports:
+      - '9000:9000'
+  web:
+    container_name: emenu
+    build:
+      context: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/project
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sqlite3
