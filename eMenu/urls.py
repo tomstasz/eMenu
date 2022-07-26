@@ -45,7 +45,7 @@ urlpatterns = (
     [
         path("admin/", admin.site.urls),
         path("", include(router.urls)),
-        path("index/", views.MenuList.as_view(), name="menu-list"),
+        path("index/", views.MenuList.as_view(), name="menus-list"),
         path("index/<int:id>", views.MenuDetail.as_view(), name="menu-detail"),
         path("menu/<int:pk>", views.MenuManage.as_view(), name="menu-manage"),
         path("dish/<int:pk>", views.DishManage.as_view(), name="dish-manage"),

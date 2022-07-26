@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    'django_nose',
     "django_filters",
     "django_crontab",
+    "django_extensions",
     "drf_yasg",
     "menu_app",
 ]
@@ -146,3 +148,12 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = "localhost"
 DEFAULT_FROM_EMAIL = "myemail@gmail.com"
 EMAIL_PORT = 25
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=menu_app',
+]
