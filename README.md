@@ -41,5 +41,5 @@ Jeśli chcemy wykonać testy aplikacji używamy komendy:
 ```sh
 python manage.py test
 ```
-
+Do projektu załączona została baza sqlite3, wypełniona niewielką ilością danych testowych, aby ułatwić wypróbowanie działania endpointów.
 
