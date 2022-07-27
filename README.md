@@ -35,7 +35,7 @@ dania=
 ```
 Przykład:
 ```sh
-http://127.0.0.1:8000/index/?nazwa=test
+http://127.0.0.1:8000/index/?nazwa=xxx
 ```
 Jeśli chcemy wykonać testy aplikacji używamy komendy:
 ```sh
