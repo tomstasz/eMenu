@@ -1,7 +1,7 @@
 # eMenu
 API do zarządzania restauracyjnymi kartami dań.
 
-INSTALACJA I URUCHOMIENIE
+## INSTALACJA I URUCHOMIENIE
 
 Po sklonowaniu repozytorium na dysk projekt możemy uruchomić lokalnie na dwa sposoby: standardowo albo w kontenerach (jeśli mamy zainstalowanego Dockera).
 Aby uruchomić standardowo najpierw należy założyć środowisko wirtualne i zainstalować niezbędne biblioteki. W katalogu projektu wykonujemy:
@@ -18,7 +18,7 @@ Z kolei aby uruchomić projekt w kontenerach, w katalogu z plikiem docker-compos
 ```sh
 docker-compose up -d
 ```
-ENDPOINTY I PARAMETRY
+## ENDPOINTY I PARAMETRY
 Aby zobaczyć dokumentację wszystkich endpointów projektu wchodzimy na adres:
 ```sh
 http://127.0.0.1:8000/swagger/
