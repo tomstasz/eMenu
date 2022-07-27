@@ -37,4 +37,9 @@ Przykład:
 ```sh
 http://127.0.0.1:8000/index/?nazwa=test
 ```
+Jeśli chcemy wykonać testy aplikacji używamy komendy:
+```sh
+python manage.py test
+```
+
 
