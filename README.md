@@ -6,14 +6,20 @@ API do zarządzania restauracyjnymi kartami dań.
 Po sklonowaniu repozytorium na dysk projekt możemy uruchomić lokalnie na dwa sposoby: standardowo albo w kontenerach (jeśli mamy zainstalowanego Dockera).
 Aby uruchomić standardowo najpierw należy założyć środowisko wirtualne i zainstalować niezbędne biblioteki. W katalogu projektu wykonujemy:
 ```sh
-virtualenv -p python3 env
+virtualenv -p python3.8 env
 source env/bin/activate
 pip install -r requirements.txt
+```
+Dodajemy również użytkownika z uprawnieniami admina komendą:
+```sh
+python manage.py createsuperuser
 ```
 Następnie uruchamiamy aplikację poleceniem:
 ```sh
 python manage.py runserver
 ```
+i logujemy się w konsoli admina podając dane założonego przez nas użytkownika.
+
 Z kolei aby uruchomić projekt w kontenerach, w katalogu z plikiem docker-compose.yml używamy komendy:
 ```sh
 docker-compose up -d
